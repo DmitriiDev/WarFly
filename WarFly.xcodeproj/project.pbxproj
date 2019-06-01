@@ -17,6 +17,7 @@
 		286AA10522A296F80031682C /* WarFlyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA10422A296F80031682C /* WarFlyUITests.swift */; };
 		286AA11322A29AFB0031682C /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA11222A29AFB0031682C /* Background.swift */; };
 		286AA11522A2A0A50031682C /* Island.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA11422A2A0A50031682C /* Island.swift */; };
+		286AA11722A2C53B0031682C /* Clouds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA11622A2C53B0031682C /* Clouds.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		286AA10622A296F80031682C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		286AA11222A29AFB0031682C /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		286AA11422A2A0A50031682C /* Island.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Island.swift; sourceTree = "<group>"; };
+		286AA11622A2C53B0031682C /* Clouds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clouds.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				286AA0E422A296F30031682C /* GameScene.swift */,
 				286AA11222A29AFB0031682C /* Background.swift */,
 				286AA11422A2A0A50031682C /* Island.swift */,
+				286AA11622A2C53B0031682C /* Clouds.swift */,
 				286AA0E622A296F30031682C /* GameViewController.swift */,
 				286AA0E822A296F30031682C /* Main.storyboard */,
 				286AA0EB22A296F80031682C /* Assets.xcassets */,
@@ -268,6 +271,7 @@
 				286AA0E522A296F30031682C /* GameScene.swift in Sources */,
 				286AA0E722A296F30031682C /* GameViewController.swift in Sources */,
 				286AA0DF22A296F30031682C /* AppDelegate.swift in Sources */,
+				286AA11722A2C53B0031682C /* Clouds.swift in Sources */,
 				286AA11522A2A0A50031682C /* Island.swift in Sources */,
 				286AA11322A29AFB0031682C /* Background.swift in Sources */,
 			);
