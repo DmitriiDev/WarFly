@@ -20,6 +20,7 @@
 		286AA11722A2C53B0031682C /* Clouds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA11622A2C53B0031682C /* Clouds.swift */; };
 		286AA11922A2DE820031682C /* PlayerPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA11822A2DE820031682C /* PlayerPlane.swift */; };
 		286AA11B22A2E0F30031682C /* PlayerPlane.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 286AA11A22A2E0F30031682C /* PlayerPlane.atlas */; };
+		286AA11D22A32D9E0031682C /* GameBackgroundSpritable + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA11C22A32D9E0031682C /* GameBackgroundSpritable + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		286AA11622A2C53B0031682C /* Clouds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clouds.swift; sourceTree = "<group>"; };
 		286AA11822A2DE820031682C /* PlayerPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPlane.swift; sourceTree = "<group>"; };
 		286AA11A22A2E0F30031682C /* PlayerPlane.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = PlayerPlane.atlas; sourceTree = "<group>"; };
+		286AA11C22A32D9E0031682C /* GameBackgroundSpritable + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameBackgroundSpritable + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				286AA11222A29AFB0031682C /* Background.swift */,
 				286AA11422A2A0A50031682C /* Island.swift */,
 				286AA11622A2C53B0031682C /* Clouds.swift */,
+				286AA11C22A32D9E0031682C /* GameBackgroundSpritable + Extension.swift */,
 				286AA11822A2DE820031682C /* PlayerPlane.swift */,
 				286AA0E622A296F30031682C /* GameViewController.swift */,
 				286AA0E822A296F30031682C /* Main.storyboard */,
@@ -279,6 +282,7 @@
 				286AA11922A2DE820031682C /* PlayerPlane.swift in Sources */,
 				286AA0E722A296F30031682C /* GameViewController.swift in Sources */,
 				286AA0DF22A296F30031682C /* AppDelegate.swift in Sources */,
+				286AA11D22A32D9E0031682C /* GameBackgroundSpritable + Extension.swift in Sources */,
 				286AA11722A2C53B0031682C /* Clouds.swift in Sources */,
 				286AA11522A2A0A50031682C /* Island.swift in Sources */,
 				286AA11322A29AFB0031682C /* Background.swift in Sources */,
