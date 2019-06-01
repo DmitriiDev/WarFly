@@ -15,6 +15,8 @@
 		286AA0EF22A296F80031682C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 286AA0ED22A296F80031682C /* LaunchScreen.storyboard */; };
 		286AA0FA22A296F80031682C /* WarFlyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA0F922A296F80031682C /* WarFlyTests.swift */; };
 		286AA10522A296F80031682C /* WarFlyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA10422A296F80031682C /* WarFlyUITests.swift */; };
+		286AA11322A29AFB0031682C /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA11222A29AFB0031682C /* Background.swift */; };
+		286AA11522A2A0A50031682C /* Island.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA11422A2A0A50031682C /* Island.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		286AA10022A296F80031682C /* WarFlyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WarFlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		286AA10422A296F80031682C /* WarFlyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarFlyUITests.swift; sourceTree = "<group>"; };
 		286AA10622A296F80031682C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		286AA11222A29AFB0031682C /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		286AA11422A2A0A50031682C /* Island.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Island.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 			children = (
 				286AA0DE22A296F30031682C /* AppDelegate.swift */,
 				286AA0E422A296F30031682C /* GameScene.swift */,
+				286AA11222A29AFB0031682C /* Background.swift */,
+				286AA11422A2A0A50031682C /* Island.swift */,
 				286AA0E622A296F30031682C /* GameViewController.swift */,
 				286AA0E822A296F30031682C /* Main.storyboard */,
 				286AA0EB22A296F80031682C /* Assets.xcassets */,
@@ -262,6 +268,8 @@
 				286AA0E522A296F30031682C /* GameScene.swift in Sources */,
 				286AA0E722A296F30031682C /* GameViewController.swift in Sources */,
 				286AA0DF22A296F30031682C /* AppDelegate.swift in Sources */,
+				286AA11522A2A0A50031682C /* Island.swift in Sources */,
+				286AA11322A29AFB0031682C /* Background.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
