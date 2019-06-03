@@ -17,7 +17,8 @@ class PlayerPlane: SKSpriteNode {
     var forwardTextureArrayAnimation = [SKTexture]()
     var moveDirection: TurnDirection = .none
     var stillTurning: Bool = false
-    
+    let animationSpriteStrides = [(13, 1, -1), (13,26,1), (13,13,1)]
+
     
     static func populate(at point: CGPoint) -> PlayerPlane {
         let playerPlaneTexture = SKTexture(imageNamed: "airplane_3ver2_13.png")
@@ -38,7 +39,7 @@ class PlayerPlane: SKSpriteNode {
     }
     
     func performFly() {
-        planeAnimationFillArray()
+        preloadTextureArrays()
         motionManager.accelerometerUpdateInterval = 0.2
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { [unowned self] (data, error) in
             if let data = data {
@@ -56,55 +57,40 @@ class PlayerPlane: SKSpriteNode {
         self.run(planeSequenceForever)
     }
     
-    
-    fileprivate func planeAnimationFillArray() {
-        SKTextureAtlas.preloadTextureAtlases([SKTextureAtlas(named: "PlayerPlane")]) {
-            self.leftTextureArrayAnimation = { 
-                
-                var array = [SKTexture]()
-                for i in stride(from: 13, to: 1, by: -1) {
-                    let number = String(format: "%02d", i)
-                    let texture = SKTexture(imageNamed: "airplane_3ver2_\(number)")
-                    array.append(texture)
-                }
-                SKTexture.preload(array, withCompletionHandler: {
-                    print("preload is done")
-                })
-                return array
-            }()
-            
-            self.rightTextureArrayAnimation = {
-                
-                var array = [SKTexture]()
-                for i in stride(from: 13, to: 26, by: 1) {
-                    let number = String(format: "%02d", i)
-                    let texture = SKTexture(imageNamed: "airplane_3ver2_\(number)")
-                    array.append(texture)
-                }
-                SKTexture.preload(array, withCompletionHandler: {
-                    print("preload is done")
-                })
-                return array
-            }()
-            
-            self.forwardTextureArrayAnimation = {
-                var array = [SKTexture]()
-                let texture = SKTexture(imageNamed: "airplane_3ver2_13")
-                array.append(texture)
-                SKTexture.preload(array, withCompletionHandler: {
-                    print("preload is done")
-                })
-                return array
-            }()
+    fileprivate func preloadArray(_stride: (Int, Int, Int), callback: @escaping(_ array: [SKTexture]) -> ()) {
+        var array = [SKTexture]()
+        for i in stride(from: _stride.0, through: _stride.1, by: _stride.2) {
+            let number = String(format: "%02d", i)
+            let texture = SKTexture(imageNamed: "airplane_3ver2_\(number)")
+            array.append(texture)
+        }
+        
+        SKTexture.preload(array) {
+            callback(array)
         }
     }
     
+    fileprivate func preloadTextureArrays() {
+        for i in 0...2 {
+            self.preloadArray(_stride: animationSpriteStrides[i], callback: { [unowned self] array in
+                switch i  {
+                case 0: self.leftTextureArrayAnimation = array
+                case 1: self.rightTextureArrayAnimation = array
+                case 2: self.forwardTextureArrayAnimation = array
+                default: break
+                }
+            })
+        }
+    }
+    
+
+
     fileprivate func movementDirectionCheck() {
         if xAcceleration > 0.05, moveDirection != .right, stillTurning == false {
             stillTurning = true
             moveDirection = .right
             turnPlane(direction: .right)
-        } else if xAcceleration < -0.05, moveDirection != .left, stillTurning == false{
+        } else if xAcceleration < -0.05, moveDirection != .left, stillTurning == false {
             stillTurning = true
             moveDirection = .left
             turnPlane(direction: .left)
@@ -114,10 +100,10 @@ class PlayerPlane: SKSpriteNode {
 
         }
     }
-    
+
     fileprivate func turnPlane(direction: TurnDirection) {
         var array = [SKTexture]()
-        
+
         if direction == .right {
             array = rightTextureArrayAnimation
         } else if direction == .left {
@@ -125,7 +111,7 @@ class PlayerPlane: SKSpriteNode {
         } else if direction == .none {
             array = forwardTextureArrayAnimation
         }
-        
+
         let forwardAction = SKAction.animate(with: array, timePerFrame: 0.05, resize: true, restore: false)
         let backwardAction = SKAction.animate(with: array.reversed(), timePerFrame: 0.05, resize: true, restore: false)
         let sequenceAction = SKAction.sequence([forwardAction, backwardAction])
