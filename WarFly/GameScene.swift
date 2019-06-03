@@ -25,6 +25,13 @@ class GameScene: SKScene {
         powerUp.performRotation()
         self.addChild(powerUp)
         
+        let enemyTextureAtlas = SKTextureAtlas(named: "Enemy_1")
+        SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas]) {
+            Enemy.textureAtlas = enemyTextureAtlas
+            let enemy = Enemy()
+            enemy.position = CGPoint(x: self.size.width / 2, y: self.size.height * 2 / 3)
+            self.addChild(enemy)
+        }
     }
     
     fileprivate func spawnClouds() {
@@ -56,16 +63,11 @@ class GameScene: SKScene {
         let screenCenterPoint = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
         let background = Background.populateBackground(at: screenCenterPoint)
         self.addChild(background)
-        
         let screen = UIScreen.main.bounds
     
-//        let island1 = Island.populate(at: CGPoint(x: 100, y: 200))
         let island2 = Island.populate(at: CGPoint(x: self.size.width - 100, y: self.size.height - 200))
-
-//        self.addChild(island1)
         self.addChild(island2)
 
-        
         let cloud = Cloud.populate(at: nil)
         self.addChild(cloud)
         
