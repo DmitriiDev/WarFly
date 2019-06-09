@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		281550E922AB162400B9BEAD /* Enemy_2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 281550E822AB162400B9BEAD /* Enemy_2.atlas */; };
 		286AA0DF22A296F30031682C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA0DE22A296F30031682C /* AppDelegate.swift */; };
 		286AA0E522A296F30031682C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA0E422A296F30031682C /* GameScene.swift */; };
 		286AA0E722A296F30031682C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA0E622A296F30031682C /* GameViewController.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		281550E822AB162400B9BEAD /* Enemy_2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy_2.atlas; sourceTree = "<group>"; };
 		286AA0DB22A296F30031682C /* WarFly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WarFly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		286AA0DE22A296F30031682C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		286AA0E422A296F30031682C /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				28A1449C22A5D5DA001CE69F /* Enemy.swift */,
 				286AA0E822A296F30031682C /* Main.storyboard */,
 				286AA0EB22A296F80031682C /* Assets.xcassets */,
+				281550E822AB162400B9BEAD /* Enemy_2.atlas */,
 				28A1449B22A5D533001CE69F /* Enemy_1.atlas */,
 				286AA11A22A2E0F30031682C /* PlayerPlane.atlas */,
 				286AA12022A41B560031682C /* GreenPowerUp.atlas */,
@@ -262,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				281550E922AB162400B9BEAD /* Enemy_2.atlas in Resources */,
 				28A1449E22A5D9AC001CE69F /* Enemy_1.atlas in Resources */,
 				286AA0EA22A296F30031682C /* Main.storyboard in Resources */,
 				286AA12122A41B560031682C /* GreenPowerUp.atlas in Resources */,

@@ -20,7 +20,7 @@ final class Cloud: SKSpriteNode, GameBackgroundSpriteable {
         cloud.zPosition = 10
         cloud.anchorPoint = CGPoint(x: 0.5, y: 1.0)
 
-        cloud.name = "backgroundSprite"
+        cloud.name = "sprite"
         cloud.run(move(from: cloud.position))
         return cloud
     }
