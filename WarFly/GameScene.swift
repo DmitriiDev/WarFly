@@ -58,10 +58,21 @@ class GameScene: SKScene {
     
     
     fileprivate func spawnSpiralPowerUp() {
-        let powerUp = PowerUp()
+        let powerUp = BluePowerUP()
         powerUp.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
-        powerUp.performRotation()
-        self.addChild(powerUp)
+        
+        let spawnAction = SKAction.run {
+            let randomNumber = Int(arc4random_uniform(2))
+            let powerUp = randomNumber == 1 ? BluePowerUP() : GreenPowerUP()
+            let randomPositionX = arc4random_uniform(UInt32(UInt(self.size.width - 30)))
+            powerUp.position = CGPoint(x: CGFloat(randomPositionX), y: self.size.height + 100)
+            powerUp.startMovement()
+            self.addChild(powerUp)
+        }
+        
+        let randomTimeSpawn = Double(arc4random_uniform(11) + 10)
+        let waitAction = SKAction.wait(forDuration: randomTimeSpawn)
+        self.run(SKAction.repeatForever(SKAction.sequence([spawnAction, waitAction])))
         
     }
     
@@ -108,10 +119,29 @@ class GameScene: SKScene {
     }
     override func didSimulatePhysics() {
         enumerateChildNodes(withName: "sprite") { (node, stop) in
-            if node.position.y < -100  {
+            if node.position.y <= -100  {
+                node.removeFromParent()
+              
+            }
+        }
+        
+        enumerateChildNodes(withName: "ShotSprite") { (node, stop) in
+            if node.position.y <= self.size.height + 100  {
                 node.removeFromParent()
             }
         }
+    }
+    
+    fileprivate func playerFire() {
+        let shot = YellowShot()
+        
+        shot.position = self.player.position
+        shot.startMovement()
+        self.addChild(shot)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        playerFire()
     }
     
 }

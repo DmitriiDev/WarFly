@@ -1,15 +1,16 @@
 //
-//  PowerUp.swift
+//  Shot.swift
 //  WarFly
 //
-//  Created by dmitrii on 02.06.19.
+//  Created by dmitrii on 10.06.19.
 //  Copyright © 2019 dmitrii. All rights reserved.
 //
 
 import SpriteKit
 
-class PowerUp: SKSpriteNode {
-    fileprivate  let initialSize = CGSize(width: 52, height: 52)
+class Shot: SKSpriteNode {
+    let screenSize = UIScreen.main.bounds
+    fileprivate  let initialSize = CGSize(width: 187, height: 237)
     fileprivate  let textureAtlas: SKTextureAtlas!
     fileprivate var animationSpriteArray = [SKTexture]()
     fileprivate  var textureNameBeignsWith = ""
@@ -20,14 +21,14 @@ class PowerUp: SKSpriteNode {
         let texture = textureAtlas.textureNamed(nameTexture)
         self.textureNameBeignsWith = String(nameTexture.dropLast(6))
         super.init(texture: texture, color: .clear, size: initialSize)
-        self.name = "sprite"
+        self.name = "shotSprite"
         self.setScale(0.7)
-        self.zPosition = 20
+        self.zPosition = 30
     }
     
     func startMovement() {
         performRotation()
-        let moveForward = SKAction.moveTo(y: -100, duration: 5)
+        let moveForward = SKAction.moveTo(y: screenSize.height + 100, duration: 2)
         self.run(moveForward)
     }
     
