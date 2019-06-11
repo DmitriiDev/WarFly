@@ -21,11 +21,37 @@ class PlayerPlane: SKSpriteNode {
 
     
     static func populate(at point: CGPoint) -> PlayerPlane {
-        let playerPlaneTexture = SKTexture(imageNamed: "airplane_3ver2_13.png")
+        let atlas = Assets.share.playerPlaneAtlas
+        let playerPlaneTexture = atlas.textureNamed("airplane_3ver2_13.png")
+        
         let playerPlane = PlayerPlane(texture: playerPlaneTexture)
         playerPlane.setScale(0.5)
         playerPlane.position = point
-        playerPlane.zPosition = 20
+        playerPlane.zPosition = 40
+        
+        let offsetX = playerPlane.frame.size.width * playerPlane.anchorPoint.x
+        let offsetY = playerPlane.frame.size.height * playerPlane.anchorPoint.y
+        let path = CGMutablePath()
+        path.move(to: CGPoint(x: 9 - offsetX, y: 76 - offsetY))
+        path.addLine(to: CGPoint(x: 65 - offsetX, y: 87 - offsetY))
+        path.addLine(to: CGPoint(x: 70 - offsetX, y: 98 - offsetY))
+        path.addLine(to: CGPoint(x: 78 - offsetX, y: 99 - offsetY))
+        path.addLine(to: CGPoint(x: 140 - offsetX, y: 76 - offsetY))
+        path.addLine(to: CGPoint(x: 142 - offsetX, y: 66 - offsetY))
+        path.addLine(to: CGPoint(x: 86 - offsetX, y: 55 - offsetY))
+        path.addLine(to: CGPoint(x: 80 - offsetX, y: 25 - offsetY))
+        path.addLine(to: CGPoint(x: 95 - offsetX, y: 11 - offsetY))
+        path.addLine(to: CGPoint(x: 59 - offsetX, y: 6 - offsetY))
+        path.addLine(to: CGPoint(x: 70 - offsetX, y: 26 - offsetY))
+        path.addLine(to: CGPoint(x: 66 - offsetX, y: 58 - offsetY))
+        path.addLine(to: CGPoint(x: 10 - offsetX, y: 64 - offsetY))
+        path.closeSubpath()
+
+        playerPlane.physicsBody = SKPhysicsBody(polygonFrom: path)
+        playerPlane.physicsBody?.isDynamic = false
+        playerPlane.physicsBody?.categoryBitMask = BitMaskCategory.player.rawValue
+        playerPlane.physicsBody?.collisionBitMask = BitMaskCategory.enemy.rawValue | BitMaskCategory.powerUp.rawValue
+        playerPlane.physicsBody?.contactTestBitMask = BitMaskCategory.enemy.rawValue | BitMaskCategory.powerUp.rawValue
         return playerPlane
     }
     

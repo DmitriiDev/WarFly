@@ -10,7 +10,7 @@ import SpriteKit
 
 class GreenPowerUP: PowerUp {
     init() {
-        let textureAtlas = SKTextureAtlas(named: "GreenPowerUp")
+        let textureAtlas = Assets.share.greenPowerUpAtlas
         super.init(textureAtlas: textureAtlas)
     }
     
