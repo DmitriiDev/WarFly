@@ -11,6 +11,7 @@ import SpriteKit
 class Assets: SKSpriteNode {
     
     static let share = Assets()
+    var isLoaded = false
     let yellowShotAtlas = SKTextureAtlas(named: "YellowAmmo")
     let enemy_1Atlas = SKTextureAtlas(named: "Enemy_1")
     let enemy_2Atlas = SKTextureAtlas(named: "Enemy_2")
@@ -24,7 +25,7 @@ class Assets: SKSpriteNode {
             print("yellowAmmo preloaded")
         }
         enemy_1Atlas.preload {
-            print("enemy_1 preloaded")
+            print("enemy_1 preloaded") 
         }
         enemy_2Atlas.preload {
             print("enemy_2 preloaded")

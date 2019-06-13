@@ -1,27 +1,25 @@
 //
-//  MenuScene.swift
+//  PauseScene.swift
 //  WarFly
 //
-//  Created by dmitrii on 10.06.19.
+//  Created by dmitrii on 14.06.19.
 //  Copyright © 2019 dmitrii. All rights reserved.
 //
 
 import SpriteKit
 
-class MenuScene: SKScene  {
+class PauseScene: SKScene {
 
     override func didMove(to view: SKView) {
-        if !Assets.share.isLoaded {
-            Assets.share.preloadAssets()
-            Assets.share.isLoaded = true
-        }
+    
+      
+        
         self.backgroundColor = SKColor(red: 0.15, green: 0.15, blue: 0.3, alpha: 1.0)
-        let header = SKSpriteNode(imageNamed: "header1")
+        let header = ButtonName(titled: "pause", backgroundName: "header_background")
         header.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 150)
-        header.name = "runButton"
         self.addChild(header)
         
-        let titles = ["play" , "options", "best"]
+        let titles = ["restart" , "options", "resume"]
         
         for (index, title) in titles.enumerated() {
             let button = ButtonName(titled: title, backgroundName: "button_background")
@@ -37,7 +35,7 @@ class MenuScene: SKScene  {
         let location = touches.first!.location(in: self)
         let node = self.atPoint(location)
         
-        if node.name == "play"  {
+        if node.name == "restart"  {
             let transition = SKTransition.crossFade(withDuration: 1.0)
             let gameScene = GameScene(size: self.size)
             gameScene.scaleMode = .aspectFill
