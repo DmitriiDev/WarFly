@@ -16,8 +16,8 @@ class PlayerPlane: SKSpriteNode {
     var rightTextureArrayAnimation = [SKTexture]()
     var forwardTextureArrayAnimation = [SKTexture]()
     var moveDirection: TurnDirection = .none
-    var stillTurning: Bool = false
-    let animationSpriteStrides = [(13, 1, -1), (13,26,1), (13,13,1)]
+    var stillTurning = false
+    let animationSpriteStrides = [(13, 1, -1), (13, 26, 1), (13, 13, 1)]
 
     
     static func populate(at point: CGPoint) -> PlayerPlane {
@@ -47,7 +47,9 @@ class PlayerPlane: SKSpriteNode {
         path.addLine(to: CGPoint(x: 10 - offsetX, y: 64 - offsetY))
         path.closeSubpath()
 
-        playerPlane.physicsBody = SKPhysicsBody(polygonFrom: path)
+        playerPlane.physicsBody = SKPhysicsBody(texture: playerPlaneTexture, alphaThreshold: 0.5, size: playerPlane.size)
+
+        //playerPlane.physicsBody = SKPhysicsBody(polygonFrom: path)
         playerPlane.physicsBody?.isDynamic = false
         playerPlane.physicsBody?.categoryBitMask = BitMaskCategory.player.rawValue
         playerPlane.physicsBody?.collisionBitMask = BitMaskCategory.enemy.rawValue | BitMaskCategory.powerUp.rawValue
@@ -112,11 +114,11 @@ class PlayerPlane: SKSpriteNode {
 
 
     fileprivate func movementDirectionCheck() {
-        if xAcceleration > 0.05, moveDirection != .right, stillTurning == false {
+        if xAcceleration > 0.02, moveDirection != .right, stillTurning == false {
             stillTurning = true
             moveDirection = .right
             turnPlane(direction: .right)
-        } else if xAcceleration < -0.05, moveDirection != .left, stillTurning == false {
+        } else if xAcceleration < -0.02, moveDirection != .left, stillTurning == false {
             stillTurning = true
             moveDirection = .left
             turnPlane(direction: .left)
