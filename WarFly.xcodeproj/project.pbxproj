@@ -24,6 +24,9 @@
 		28679BDD22B6826E00CFD39E /* enemyExposion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 28679BDB22B6826E00CFD39E /* enemyExposion.sks */; };
 		28679BDE22B6826E00CFD39E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28679BDC22B6826E00CFD39E /* Assets.xcassets */; };
 		28679BE122B692F300CFD39E /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28679BE022B692F300CFD39E /* GameOverScene.swift */; };
+		28679BE722B6C70E00CFD39E /* backgroundMusic.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 28679BE522B6C4C200CFD39E /* backgroundMusic.m4a */; };
+		28679BE822B6C71000CFD39E /* hitSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28679BE622B6C4C200CFD39E /* hitSound.wav */; };
+		28679BEA22B6C84200CFD39E /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28679BE922B6C84200CFD39E /* GameSettings.swift */; };
 		286AA0DF22A296F30031682C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA0DE22A296F30031682C /* AppDelegate.swift */; };
 		286AA0E522A296F30031682C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA0E422A296F30031682C /* GameScene.swift */; };
 		286AA0E722A296F30031682C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AA0E622A296F30031682C /* GameViewController.swift */; };
@@ -83,6 +86,9 @@
 		28679BDB22B6826E00CFD39E /* enemyExposion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = enemyExposion.sks; sourceTree = "<group>"; };
 		28679BDC22B6826E00CFD39E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28679BE022B692F300CFD39E /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		28679BE522B6C4C200CFD39E /* backgroundMusic.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = backgroundMusic.m4a; sourceTree = "<group>"; };
+		28679BE622B6C4C200CFD39E /* hitSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitSound.wav; sourceTree = "<group>"; };
+		28679BE922B6C84200CFD39E /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		286AA0DB22A296F30031682C /* WarFly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WarFly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		286AA0DE22A296F30031682C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		286AA0E422A296F30031682C /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -205,6 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				286AA0DE22A296F30031682C /* AppDelegate.swift */,
+				28679BE522B6C4C200CFD39E /* backgroundMusic.m4a */,
+				28679BE622B6C4C200CFD39E /* hitSound.wav */,
 				286AA0E822A296F30031682C /* Main.storyboard */,
 				286AA0ED22A296F80031682C /* LaunchScreen.storyboard */,
 				286AA0EB22A296F80031682C /* Assets.xcassets */,
@@ -265,6 +273,7 @@
 			children = (
 				281550F622AE58B700B9BEAD /* Assets.swift */,
 				2815510022AE751500B9BEAD /* BitMaskCategory.swift */,
+				28679BE922B6C84200CFD39E /* GameSettings.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -391,7 +400,9 @@
 			files = (
 				281550E922AB162400B9BEAD /* Enemy_2.atlas in Resources */,
 				28A1449E22A5D9AC001CE69F /* Enemy_1.atlas in Resources */,
+				28679BE722B6C70E00CFD39E /* backgroundMusic.m4a in Resources */,
 				2895E9AB22B2EF7800A72396 /* Default-568h@2x.png in Resources */,
+				28679BE822B6C71000CFD39E /* hitSound.wav in Resources */,
 				286AA0EA22A296F30031682C /* Main.storyboard in Resources */,
 				28679BDD22B6826E00CFD39E /* enemyExposion.sks in Resources */,
 				281550F522ADC40E00B9BEAD /* YellowAmmo.atlas in Resources */,
@@ -427,6 +438,7 @@
 			files = (
 				286AA0E522A296F30031682C /* GameScene.swift in Sources */,
 				281550F422ADC11F00B9BEAD /* YellowShot.swift in Sources */,
+				28679BEA22B6C84200CFD39E /* GameSettings.swift in Sources */,
 				286AA11922A2DE820031682C /* PlayerPlane.swift in Sources */,
 				286AA0E722A296F30031682C /* GameViewController.swift in Sources */,
 				286AA0DF22A296F30031682C /* AppDelegate.swift in Sources */,

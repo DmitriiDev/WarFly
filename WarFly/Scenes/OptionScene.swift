@@ -9,20 +9,29 @@
 import SpriteKit
 class OptionScene: ParentScene {
     
+    var isMusic: Bool!
+    var isSound: Bool!
+
+    
     override func didMove(to view: SKView) {
+        
+        isMusic = gameSettings.isMusic
+        isSound = gameSettings.isSound
         
         self.backgroundColor = SKColor(red: 0.15, green: 0.15, blue: 0.3, alpha: 1.0)
         setHeader(withName: "options", andbackGround: "header_background")
         
         
-        
-        let music = ButtonNode(titled: nil, backgroundName: "music")
+        let backgroundMusic = isMusic == true ? "music" : "nomusic"
+        let music = ButtonNode(titled: nil, backgroundName: backgroundMusic)
         music.position = CGPoint(x: self.frame.midX - 50, y: self.frame.midY)
         music.name = "music"
         music.label.isHidden = true
         addChild(music)
         
-        let sound = ButtonNode(titled: nil, backgroundName: "sound")
+        let backgroundSound = isMusic == true ? "sound" : "nosound"
+
+        let sound = ButtonNode(titled: nil, backgroundName: backgroundSound)
         sound.position = CGPoint(x: self.frame.midX + 50, y: self.frame.midY)
         sound.name = "sound"
         sound.label.isHidden = true
@@ -49,16 +58,28 @@ class OptionScene: ParentScene {
         let node = self.atPoint(location)
         
         if node.name == "music"  {
-            print("music")
+           isMusic = !isMusic
+            update(node: node as! SKSpriteNode, property: isMusic)
         } else if node.name == "sound" {
-            print("sound")
+            isSound = !isSound
+            update(node: node as! SKSpriteNode, property: isSound)
         } else if node.name == "back" {
-
+            print("qqqqqqq")
+            gameSettings.isSound = isSound
+            gameSettings.isMusic = isMusic
+            gameSettings.saveGameSettings()
+            
             let transition = SKTransition.crossFade(withDuration: 1.0)
             guard let backScene = backScene else {return}
             backScene.scaleMode = .aspectFill
             self.scene!.view?.presentScene(backScene, transition: transition)
         }
 
+    }
+    
+    func update(node: SKSpriteNode, property: Bool) {
+        if let name = node.name {
+            node.texture = property ? SKTexture(imageNamed: name) : SKTexture(imageNamed: "no" + name)
+        }
     }
 }

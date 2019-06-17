@@ -10,22 +10,26 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: ParentScene {
+    
+    var backgroundMusic: SKAudioNode!
     var player: PlayerPlane!
     let hud = HUD()
     let screenSize = UIScreen.main.bounds.size
     fileprivate var lives = 3 {
         didSet {
             switch lives {
-//            case 3:
-//
-//            case 2:
-//                hud.life1.isHidden = false
-//                hud.life2.isHidden = false
-//                hud.life3.isHidden = true
-//            case 1:
-//                hud.life1.isHidden = false
-//                hud.life2.isHidden = true
-//                hud.life3.isHidden = true
+            case 3:
+                hud.life1.isHidden = false
+                hud.life2.isHidden = false
+                hud.life3.isHidden = false
+            case 2:
+                hud.life1.isHidden = false
+                hud.life2.isHidden = false
+                hud.life3.isHidden = true
+            case 1:
+                hud.life1.isHidden = false
+                hud.life2.isHidden = true
+                hud.life3.isHidden = true
             default:
                 break
             }
@@ -33,6 +37,13 @@ class GameScene: ParentScene {
     }
     
     override func didMove(to view: SKView) {
+        gameSettings.loadGameSettings()
+
+        if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") {
+            backgroundMusic = SKAudioNode(url: musicURL)
+            addChild(self.backgroundMusic)
+        }
+        
         self.scene?.isPaused = false
         guard sceneManager.gameScene == nil else {
             return
@@ -111,6 +122,21 @@ class GameScene: ParentScene {
         
     }
     
+//
+//    fileprivate func spaMusic() {
+//        let spawnCloudWait = SKAction.wait(forDuration: 1)
+//        let spawnCloudAction = SKAction.run {
+//            if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") {
+//                self.backgroundMusic = SKAudioNode(url: musicURL)
+//                self.addChild(self.backgroundMusic)
+//            }
+//        }
+//
+//        let spawnCloudSequence = SKAction.sequence([spawnCloudWait, spawnCloudAction])
+//        let spawnCloudForever = SKAction.repeatForever(spawnCloudSequence)
+//        run(spawnCloudForever)
+//    }
+    
     fileprivate func spawnClouds() {
         let spawnCloudWait = SKAction.wait(forDuration: 3)
         let spawnCloudAction = SKAction.run {
@@ -155,11 +181,26 @@ class GameScene: ParentScene {
     override func didSimulatePhysics() {
         player.checkPosition()
         enumerateChildNodes(withName: "sprite") { (node, stop) in
-            if node.position.y <= -50  {
+            if node.position.y <= -100  {
                 node.removeFromParent()
                 
             }
         }
+        
+        enumerateChildNodes(withName: "greenPowerUp") { (node, stop) in
+            if node.position.y <= -100  {
+                node.removeFromParent()
+            }
+        }
+        
+        enumerateChildNodes(withName: "bluePowerUp") { (node, stop) in
+            if node.position.y <= -100  {
+                node.removeFromParent()
+                
+            }
+        }
+        
+        
         
         enumerateChildNodes(withName: "shotSprite") { (node, stop) in
             if node.position.y >= self.size.height + 100  {
@@ -226,38 +267,35 @@ extension GameScene: SKPhysicsContactDelegate {
         }
         addChild(explosion!)
         self.run(waitForExplosionAction) { explosion?.removeFromParent() }
-        case [.powerUp, .player]: print("powerUp vs player")
-        if contact.bodyA.node?.name == "bluePowerUp" {
-            
+        case [.powerUp, .player]:
+        print("powerUp vs player")
+        if contact.bodyA.node?.parent != nil && contact.bodyB.node?.parent != nil {
+            if contact.bodyA.node?.name == "greenPowerUp" {
+                contact.bodyA.node?.removeFromParent()
+                lives += 1
+                player.greenPowerUp()
+            }  else if contact.bodyB.node?.name == "greenPowerUp" {
+                    contact.bodyB.node?.removeFromParent()
+                    lives += 1
+                    player.greenPowerUp()
+                }
             }
         case [.enemy, .shot]: print("enemy vs shot")
-        hud.score += 5
-        contact.bodyA.node?.removeFromParent()
-        contact.bodyB.node?.removeFromParent()
-        addChild(explosion!)
-        self.run(waitForExplosionAction) { explosion?.removeFromParent() }
+        
+        if contact.bodyA.node?.parent != nil && contact.bodyB.node?.parent != nil {
+            
+            contact.bodyA.node?.removeFromParent()
+            contact.bodyB.node?.removeFromParent()
+            self.run(SKAction.playSoundFileNamed("hitSound", waitForCompletion: false))
+            hud.score += 5
+            addChild(explosion!)
+            self.run(waitForExplosionAction) { explosion?.removeFromParent() }
+            }
             
             
         default: preconditionFailure("Unable to detect collision category")
         }
-        
-        //
-        //        let bodyA = contact.bodyA.categoryBitMask
-        //        let bodyB = contact.bodyB.categoryBitMask
-        //        let player = BitMaskCategory.player
-        //        let enemy = BitMaskCategory.enemy
-        //        let shot = BitMaskCategory.shot
-        //        let powerUp = BitMaskCategory.powerUp
-        //
-        //
-        //        if bodyA == player && bodyB == enemy || bodyA == enemy && bodyB == player {
-        //            print("enemy vs player")
-        //        } else if bodyA == player && bodyB == powerUp || bodyA == powerUp && bodyB == player {
-        //            print("player vs powerUp")
-        //        } else if bodyA == shot && bodyB == enemy || bodyA == enemy && bodyB == shot {
-        //            print("enemy vs shot")
-        //        }
-        
+
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
