@@ -12,7 +12,7 @@ class GameOverScene: ParentScene {
     override func didMove(to view: SKView) {
         
         self.backgroundColor = SKColor(red: 0.15, green: 0.15, blue: 0.3, alpha: 1.0)
-        setHeader(withName: "pause", andbackGround: "header_background")
+        setHeader(withName: "Game Over", andbackGround: "header_background")
         
         let titles = ["restart" , "options", "best"]
         

@@ -10,13 +10,23 @@ import SpriteKit
 
 class BestScene: ParentScene {
     
+    var places: [Int]!
     override func didMove(to view: SKView) {
+        gameSettings.loadScores()
+        places = gameSettings.hightScore
+        
+        for (index, title) in places.enumerated() {
+            let button = ButtonNode(titled: String(title), backgroundName: "button_background")
+            button.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 70 - CGFloat(100 * index))
+            addChild(button)
+        }
+        
         
         self.backgroundColor = SKColor(red: 0.15, green: 0.15, blue: 0.3, alpha: 1.0)
         setHeader(withName: "best", andbackGround: "header_background")
         
         let back = ButtonNode(titled: "back", backgroundName: "button_background")
-        back.position = CGPoint(x: self.frame.midX, y: self.frame.midY - 100)
+        back.position = CGPoint(x: self.frame.midX, y: self.frame.midY - 250)
         back.name = "back"
         back.label.text = "back"
         addChild(back)

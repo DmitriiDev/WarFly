@@ -10,6 +10,14 @@ import SpriteKit
 
 class HUD: SKNode {
     
+    let shotCountBackGround = SKSpriteNode(imageNamed: "button_background")
+    let shotCountLabel = SKLabelNode(text: "35")
+    var shotCount: Int = 35 {
+        didSet {
+            shotCountLabel.text = shotCount.description
+        }
+    }
+    
     let scoreBackground = SKSpriteNode(imageNamed: "scores")
     let scoreLabel = SKLabelNode(text: "0")
     var screenSize: CGSize?
@@ -38,6 +46,21 @@ class HUD: SKNode {
         scoreLabel.fontName = "AmericanTypewriter-Bold"
         scoreLabel.fontSize = 30
         scoreBackground.addChild(scoreLabel)
+        
+        shotCountBackGround.position = CGPoint(x: scoreBackground.size.width, y: screenSize.height - scoreBackground.size.height / 2 - 25)
+        shotCountBackGround.anchorPoint = CGPoint(x: -1, y: 0.4)
+        shotCountBackGround.xScale = 0.5
+        shotCountBackGround.yScale = 0.5
+        shotCountBackGround.zPosition = 100
+        addChild(shotCountBackGround)
+        
+        shotCountLabel.horizontalAlignmentMode = .right
+        shotCountLabel.verticalAlignmentMode = .center
+        shotCountLabel.position = CGPoint(x: 320, y: 3)
+        shotCountLabel.zPosition = 100
+        shotCountLabel.fontName = "AmericanTypewriter-Bold"
+        shotCountLabel.fontSize = 60
+        shotCountBackGround.addChild(shotCountLabel)
         
         menuButton.position = CGPoint(x: 20, y: 20)
         menuButton.anchorPoint = CGPoint(x: 0.0, y: 0.0)

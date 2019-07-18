@@ -12,6 +12,9 @@ import GameplayKit
 class GameScene: ParentScene {
     
     var backgroundMusic: SKAudioNode!
+    let vibroGeneratorPlayerDamage = UIImpactFeedbackGenerator(style: .heavy)
+    let vibroGeneratorEnemyDamage = UIImpactFeedbackGenerator(style: .medium)
+
     var player: PlayerPlane!
     let hud = HUD()
     let screenSize = UIScreen.main.bounds.size
@@ -228,7 +231,11 @@ class GameScene: ParentScene {
             self.scene?.isPaused = true
             self.scene!.view?.presentScene(pauseScene, transition: transition)
         } else {
-            playerFire()
+            
+            if hud.shotCount > 0 {
+                playerFire()
+                hud.shotCount -= 1
+            }
         }
         
     }
@@ -251,15 +258,21 @@ extension GameScene: SKPhysicsContactDelegate {
             if contact.bodyA.node?.parent != nil {
                 contact.bodyA.node?.removeFromParent()
                 lives -= 1
+                vibroGeneratorPlayerDamage.impactOccurred()
+
             }
         } else {
             if contact.bodyB.node?.parent != nil {
                 contact.bodyB.node?.removeFromParent()
                 lives -= 1
+                vibroGeneratorPlayerDamage.impactOccurred()
+
             }
         }
         
         if lives == 0 {
+            gameSettings.currentScore = hud.score
+            gameSettings.saveScores()
             let transition = SKTransition.doorsCloseVertical(withDuration: 1.0)
             let gameOverScene = GameOverScene(size: self.size)
             gameOverScene.scaleMode = .aspectFill
@@ -279,11 +292,16 @@ extension GameScene: SKPhysicsContactDelegate {
                     lives += 1
                     player.greenPowerUp()
                 }
+            else if contact.bodyB.node?.name == "bluePowerUp" {
+                contact.bodyB.node?.removeFromParent()
+                hud.shotCount += 20
+                player.bluePowerUp()
+            }
             }
         case [.enemy, .shot]: print("enemy vs shot")
         
         if contact.bodyA.node?.parent != nil && contact.bodyB.node?.parent != nil {
-            
+            vibroGeneratorEnemyDamage.impactOccurred()
             contact.bodyA.node?.removeFromParent()
             contact.bodyB.node?.removeFromParent()
             self.run(SKAction.playSoundFileNamed("hitSound", waitForCompletion: false))
@@ -302,6 +320,30 @@ extension GameScene: SKPhysicsContactDelegate {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
